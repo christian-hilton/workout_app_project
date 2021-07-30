@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C62420526B2516200662EDD /* FetchDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62420426B2516200662EDD /* FetchDataVC.swift */; };
 		2CAD4AB5269FE0C500AC8873 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD4AB4269FE0C500AC8873 /* AppDelegate.swift */; };
 		2CAD4AB7269FE0C500AC8873 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD4AB6269FE0C500AC8873 /* SceneDelegate.swift */; };
 		2CAD4AB9269FE0C500AC8873 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD4AB8269FE0C500AC8873 /* ContentView.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C62420426B2516200662EDD /* FetchDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDataVC.swift; sourceTree = "<group>"; };
 		2CAD4AB1269FE0C500AC8873 /* WorkoutApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAD4AB4269FE0C500AC8873 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CAD4AB6269FE0C500AC8873 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				2CAD4AB4269FE0C500AC8873 /* AppDelegate.swift */,
 				2CAD4AB6269FE0C500AC8873 /* SceneDelegate.swift */,
 				2CAD4AB8269FE0C500AC8873 /* ContentView.swift */,
+				2C62420426B2516200662EDD /* FetchDataVC.swift */,
 				2CAD4ABA269FE0C600AC8873 /* Assets.xcassets */,
 				2CAD4ABF269FE0C600AC8873 /* LaunchScreen.storyboard */,
 				2CAD4AC2269FE0C600AC8873 /* Info.plist */,
@@ -267,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CAD4AB5269FE0C500AC8873 /* AppDelegate.swift in Sources */,
+				2C62420526B2516200662EDD /* FetchDataVC.swift in Sources */,
 				2CAD4AB7269FE0C500AC8873 /* SceneDelegate.swift in Sources */,
 				2CAD4AB9269FE0C500AC8873 /* ContentView.swift in Sources */,
 			);
