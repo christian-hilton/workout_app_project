@@ -14,7 +14,8 @@
 		2C6241FA26B2505400662EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C6241F926B2505400662EDD /* Assets.xcassets */; };
 		2C6241FD26B2505400662EDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C6241FB26B2505400662EDD /* LaunchScreen.storyboard */; };
 		2C62420726B4977400662EDD /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62420626B4977400662EDD /* WorkoutSession.swift */; };
-		2C62420926B4D02B00662EDD /* WorkoutListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62420826B4D02B00662EDD /* WorkoutListViewController.swift */; };
+		2C62420D26B5DD5000662EDD /* WorkoutsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62420C26B5DD5000662EDD /* WorkoutsCollectionViewController.swift */; };
+		2C62420F26B5DE9800662EDD /* WorkoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62420E26B5DE9800662EDD /* WorkoutCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +28,8 @@
 		2C6241FC26B2505400662EDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C6241FE26B2505400662EDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C62420626B4977400662EDD /* WorkoutSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSession.swift; sourceTree = "<group>"; };
-		2C62420826B4D02B00662EDD /* WorkoutListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutListViewController.swift; sourceTree = "<group>"; };
+		2C62420C26B5DD5000662EDD /* WorkoutsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsCollectionViewController.swift; sourceTree = "<group>"; };
+		2C62420E26B5DE9800662EDD /* WorkoutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +65,13 @@
 				2C6241F026B2505300662EDD /* AppDelegate.swift */,
 				2C6241F226B2505300662EDD /* SceneDelegate.swift */,
 				2C6241F426B2505300662EDD /* ViewController.swift */,
-				2C62420826B4D02B00662EDD /* WorkoutListViewController.swift */,
 				2C62420626B4977400662EDD /* WorkoutSession.swift */,
 				2C6241F626B2505300662EDD /* Main.storyboard */,
 				2C6241F926B2505400662EDD /* Assets.xcassets */,
 				2C6241FB26B2505400662EDD /* LaunchScreen.storyboard */,
 				2C6241FE26B2505400662EDD /* Info.plist */,
+				2C62420C26B5DD5000662EDD /* WorkoutsCollectionViewController.swift */,
+				2C62420E26B5DE9800662EDD /* WorkoutCollectionViewCell.swift */,
 			);
 			path = ExerciseApp;
 			sourceTree = "<group>";
@@ -143,11 +146,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C62420D26B5DD5000662EDD /* WorkoutsCollectionViewController.swift in Sources */,
+				2C62420F26B5DE9800662EDD /* WorkoutCollectionViewCell.swift in Sources */,
 				2C6241F526B2505300662EDD /* ViewController.swift in Sources */,
 				2C6241F126B2505300662EDD /* AppDelegate.swift in Sources */,
 				2C62420726B4977400662EDD /* WorkoutSession.swift in Sources */,
 				2C6241F326B2505300662EDD /* SceneDelegate.swift in Sources */,
-				2C62420926B4D02B00662EDD /* WorkoutListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

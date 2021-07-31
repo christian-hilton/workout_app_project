@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  ExerciseApp
 //
-//  Created by Christian Hilton on 7/28/21.
+//  Created by Christian Hilton on 7/15/21.
 //
 
 import UIKit
@@ -18,18 +18,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     //TODO LIST
     
     //UI
-    //time
-    //stop
-    // Run + Bike
+    // Run + Bike selection
+    // unit labels, digits
     
     //BE
-    //time period
+    //    // fix distance
+    // fix acceleration
     // magnet??
-    // fix distance
-    // acceleration
     
     @IBOutlet weak var dataTable: UITableView!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var headlineText: UILabel!
     
     var currentWorkout: WorkoutSession?
     
@@ -37,33 +37,45 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     let motion = CMMotionManager()
     let locationManager = CLLocationManager()
     var timer: Timer?
-    var locations: [CLLocation] = []
-    var data = [("run", 0)]
     
-    func dataList() -> [(String, Float)] {
-        return [("speed", 0)]
-    }
+    var locations: [CLLocation] = [] //?
+    
+    var feedback: String = "0 Workouts this week, let's get started!"
+    
+    var timeInterval: Double = 1.0 / 60.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        startMotionSensors()
+        
         dataTable.dataSource = self
         self.currentWorkout = WorkoutSession()
+        self.headlineText.text = feedback
     }
     
     @IBAction func pressStart(_ sender: Any) {
         self.currentWorkout?.toggle()
-        startButton.titleLabel?.text = "Pause"
+        startButton.titleLabel?.text = "End"
         //TODO text switches back to start
-    }
         
+        pauseButton.isHidden = false
+        
+        startMotionSensors()
+    }
+    
+    // Pause WorkoutSession / Motion Sensors
+    @IBAction func pause(_ sender: Any) {
+        
+        pauseButton.isEnabled = false
+        stopGyros()
+        
+    }
+    
     
     // TODO clean up
     func startMotionSensors() {
         if motion.isGyroAvailable, self.motion.isAccelerometerAvailable {
-            self.motion.gyroUpdateInterval = 10 //1.0 / 60.0
-            self.motion.accelerometerUpdateInterval = 1 //1.0 / 60.0
+            self.motion.gyroUpdateInterval = timeInterval //1.0 / 60.0
+            self.motion.accelerometerUpdateInterval = timeInterval //1.0 / 60.0
             self.motion.startGyroUpdates()
             self.motion.startAccelerometerUpdates()
             
@@ -78,6 +90,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                                repeats: true, block: { (timer) in
                                 // rename
                                 if let data = self.motion.gyroData {
+                                    print(self.motion.gyroData)
                                     let x = data.rotationRate.x
                                     let y = data.rotationRate.y
                                     let z = data.rotationRate.z
@@ -138,6 +151,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             // Getting Speed
             // The instantaneous speed of the device, measured in meters per second.
             let speed = location.speed
+            print(location)
             currentWorkout?.setSpeed(Float(speed))
             //print("speed " + String(speed))
             

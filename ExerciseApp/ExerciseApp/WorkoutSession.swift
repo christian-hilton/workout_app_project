@@ -2,7 +2,7 @@
 //  WorkoutSession.swift
 //  ExerciseApp
 //
-//  Created by Christian Hilton on 7/30/21.
+//  Created by Christian Hilton on 7/25/21.
 //
 
 import Foundation
@@ -22,6 +22,7 @@ class WorkoutSession {
     var timer: Timer?
     
     init() {
+        self.type = "Run🏃‍♂️"
         self.duration = 0
         self.distance = -1
         self.speed = -1
