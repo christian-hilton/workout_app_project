@@ -13,19 +13,11 @@ class WorkoutCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     
-    
-    // remove
-    func configure(with name: String){
-        typeLabel.text = name
-    }
-    
     func configure(with workout: WorkoutSession){
         typeLabel.text = workout.type
-        distanceLabel.text = String(workout.distance)
-        durationLabel.text = String(workout.duration)
+        distanceLabel.text = String(workout.getDistance())
+        durationLabel.text = workout.getDuration()
         
     }
-    
-    //
     
 }

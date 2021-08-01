@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C6241F126B2505300662EDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6241F026B2505300662EDD /* AppDelegate.swift */; };
 		2C6241F326B2505300662EDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6241F226B2505300662EDD /* SceneDelegate.swift */; };
-		2C6241F526B2505300662EDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6241F426B2505300662EDD /* ViewController.swift */; };
+		2C6241F526B2505300662EDD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6241F426B2505300662EDD /* MainViewController.swift */; };
 		2C6241F826B2505300662EDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C6241F626B2505300662EDD /* Main.storyboard */; };
 		2C6241FA26B2505400662EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C6241F926B2505400662EDD /* Assets.xcassets */; };
 		2C6241FD26B2505400662EDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C6241FB26B2505400662EDD /* LaunchScreen.storyboard */; };
@@ -22,7 +22,7 @@
 		2C6241ED26B2505300662EDD /* ExerciseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExerciseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6241F026B2505300662EDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C6241F226B2505300662EDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2C6241F426B2505300662EDD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2C6241F426B2505300662EDD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2C6241F726B2505300662EDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C6241F926B2505400662EDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C6241FC26B2505400662EDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 			children = (
 				2C6241F026B2505300662EDD /* AppDelegate.swift */,
 				2C6241F226B2505300662EDD /* SceneDelegate.swift */,
-				2C6241F426B2505300662EDD /* ViewController.swift */,
+				2C6241F426B2505300662EDD /* MainViewController.swift */,
 				2C62420626B4977400662EDD /* WorkoutSession.swift */,
 				2C6241F626B2505300662EDD /* Main.storyboard */,
 				2C6241F926B2505400662EDD /* Assets.xcassets */,
@@ -148,7 +148,7 @@
 			files = (
 				2C62420D26B5DD5000662EDD /* WorkoutsCollectionViewController.swift in Sources */,
 				2C62420F26B5DE9800662EDD /* WorkoutCollectionViewCell.swift in Sources */,
-				2C6241F526B2505300662EDD /* ViewController.swift in Sources */,
+				2C6241F526B2505300662EDD /* MainViewController.swift in Sources */,
 				2C6241F126B2505300662EDD /* AppDelegate.swift in Sources */,
 				2C62420726B4977400662EDD /* WorkoutSession.swift in Sources */,
 				2C6241F326B2505300662EDD /* SceneDelegate.swift in Sources */,

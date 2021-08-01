@@ -21,6 +21,7 @@ class WorkoutSession {
     
     var timer: Timer?
     
+    // Initalize with default values
     init() {
         self.type = "Run🏃‍♂️"
         self.duration = 0
@@ -36,20 +37,34 @@ class WorkoutSession {
         self.speed = newSpeed
     }
     
+    func getSpeed() -> String {
+        return String(speed) + " m / s"
+    }
+    
     func setDistance(_ newDistance: Float){
         self.distance = newDistance
     }
     
-    func getData() -> [(String, Float)] {
-        return [("duration", duration), ("speed", speed), ("distance", distance), ("acceleration", acceleration)]
+    func getDistance() -> String {
+        return String(distance) + " m"
     }
     
-    func getDuration() -> Float {
-        return duration
+    func getData() -> [(String, String)] {
+        return [("duration", getDuration()), ("speed", getSpeed()), ("distance", getDistance()), ("acceleration", getAcceleration())]
+    }
+    
+    func getDuration() -> String {
+        let minutes = Int(duration) / 60
+        let seconds = Int(duration) % 60
+        return String(minutes) + ":" + String(seconds)
     }
     
     func setAcceleration(_ newAcceleration: Float) {
         acceleration = newAcceleration
+    }
+    
+    func getAcceleration() -> String {
+        return String(acceleration) + " m / s / s"
     }
     
     // ?
@@ -57,11 +72,12 @@ class WorkoutSession {
         duration = newDuration
     }
     
-    //
+    // toggle timer on/off
     func toggle() {
+        // if inactive, enable timer
         if !active {
         print("starting")
-        self.timer = Timer(fire: Date(), interval: (1.0), //(1.0/60.0)
+        self.timer = Timer(fire: Date(), interval: (1.0),
                            repeats: true, block: { (timer) in
                             self.duration += 1
                             print(self.duration)
@@ -70,19 +86,9 @@ class WorkoutSession {
         }
         // if already active, turn off timer
         else {
+            self.timer?.invalidate()
             self.timer = nil
         }
         self.active = !active
     }
-    
-
-    
 }
-
-
-//struct Metric {
-//
-//    var name: String
-//    var number: Double
-//
-//}

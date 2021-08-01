@@ -64,5 +64,7 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Tracking location data for speed and acceleration</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Tracking pedometer for distance data</string>
 </dict>
 </plist>

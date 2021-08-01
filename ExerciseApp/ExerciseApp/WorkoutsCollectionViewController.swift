@@ -36,10 +36,7 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    // Unused, clicking cell to view more
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print("hello")
     }
-    
-    
-    
 }
