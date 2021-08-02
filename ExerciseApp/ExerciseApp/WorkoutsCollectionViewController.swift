@@ -14,8 +14,6 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        delegate = (self.parent as? MainViewController)
-        dataSource = delegate?.getWorkoutData() ?? []
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

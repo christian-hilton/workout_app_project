@@ -15,7 +15,6 @@ class MainViewController: UIViewController{
     //TODO LIST
     // complete workout
     // print statements
-    // VIDEO
 
     @IBOutlet weak var dataTable: UITableView!
     @IBOutlet weak var startButton: UIButton!
@@ -55,6 +54,8 @@ class MainViewController: UIViewController{
         bikeText.addGestureRecognizer(tapBike)
         
         prevWorkouts = []
+        
+        workoutList = (self.children[0] as? WorkoutsCollectionViewController)
     }
     
     @objc func tapRun(sender:UITapGestureRecognizer) {
@@ -79,6 +80,8 @@ class MainViewController: UIViewController{
         endButton.isEnabled = true
         
         startMotionSensors()
+        
+        print()
     }
     
     // Pause WorkoutSession / Motion Sensors
@@ -94,9 +97,6 @@ class MainViewController: UIViewController{
     @IBAction func endWorkout(_ sender: Any) {
         stopSensorData()
         
-        //add to workouts
-        prevWorkouts?.append(currentWorkout!)
-        
         currentWorkout?.toggle()
         
         // update buttons
@@ -104,11 +104,15 @@ class MainViewController: UIViewController{
         pauseButton.isEnabled = false
         endButton.isEnabled = false
         
+        //add to workouts
+        prevWorkouts?.append(currentWorkout!)
+        workoutList?.dataSource = prevWorkouts ?? []
+        workoutList?.reload()
+        
         // Create new blank workout session
         currentWorkout = WorkoutSession()
         dataTable.reloadData()
-        workoutList?.reload()
-        
+
         headlineText.text = "\(prevWorkouts!.count) Workouts this week, let's get started!"
     }
     
@@ -121,6 +125,8 @@ class MainViewController: UIViewController{
             self.motion.startAccelerometerUpdates()
             self.pedometer.startUpdates(from: Date(), withHandler: {(data, error) in
                 if let pedData = data{
+                    print(pedData)
+                    
                     let distance = Float(pedData.distance ?? 0)
                     self.currentWorkout?.setDistance(distance)
                     print(pedData)
@@ -133,6 +139,9 @@ class MainViewController: UIViewController{
             self.timer = Timer(fire: Date(), interval: (1.0), //(1.0/60.0)
                                repeats: true, block: { (timer) in
                                 if let accData = self.motion.accelerometerData {
+                                    
+                                    print(accData)
+                                    
                                     let ax = accData.acceleration.x
                                     let ay = accData.acceleration.y
                                     let az = accData.acceleration.z
@@ -182,5 +191,9 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UICollectionViewDelegate {
     func getWorkoutData() -> [WorkoutSession] {
         return prevWorkouts ?? []
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        print(sender)
     }
 }
