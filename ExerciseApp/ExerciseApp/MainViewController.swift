@@ -13,16 +13,18 @@ import CoreData
 class MainViewController: UIViewController{
     
     //TODO LIST
-    // truncate decimals
     // complete workout
-    // Run + Bike selection
-    // fix acceleration
-    
+    // print statements
+    // VIDEO
+
     @IBOutlet weak var dataTable: UITableView!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var headlineText: UILabel!
     @IBOutlet weak var endButton: UIButton!
+    @IBOutlet weak var runText: UILabel!
+    @IBOutlet weak var bikeText: UILabel!
+    var workoutList: WorkoutsCollectionViewController?
     
     var currentWorkout: WorkoutSession?
     var prevWorkouts: [WorkoutSession]?
@@ -43,7 +45,30 @@ class MainViewController: UIViewController{
         dataTable.dataSource = self
         self.currentWorkout = WorkoutSession()
         self.headlineText.text = feedback
+        
+        let tapRun = UITapGestureRecognizer(target: self, action: #selector(self.tapRun))
+        runText.isUserInteractionEnabled = true
+        runText.addGestureRecognizer(tapRun)
+        
+        let tapBike = UITapGestureRecognizer(target: self, action: #selector(self.tapBike))
+        bikeText.isUserInteractionEnabled = true
+        bikeText.addGestureRecognizer(tapBike)
+        
+        prevWorkouts = []
     }
+    
+    @objc func tapRun(sender:UITapGestureRecognizer) {
+        currentWorkout?.setType(newType: "Run")
+        runText.alpha = 1
+        bikeText.alpha = 0.2
+    }
+    
+    @objc func tapBike(sender:UITapGestureRecognizer) {
+        currentWorkout?.setType(newType: "Bike")
+        runText.alpha = 0.2
+        bikeText.alpha = 1
+    }
+    
     
     @IBAction func pressStart(_ sender: Any) {
         self.currentWorkout?.toggle()
@@ -60,18 +85,31 @@ class MainViewController: UIViewController{
     @IBAction func pause(_ sender: Any) {
         pauseButton.isEnabled = false
         stopSensorData()
-        //acceleration
         currentWorkout?.toggle()
+        
+        startButton.isEnabled = true
+        pauseButton.isEnabled = false
     }
     
     @IBAction func endWorkout(_ sender: Any) {
         stopSensorData()
+        
         //add to workouts
+        prevWorkouts?.append(currentWorkout!)
         
         currentWorkout?.toggle()
         
+        // update buttons
+        startButton.isEnabled = true
+        pauseButton.isEnabled = false
+        endButton.isEnabled = false
+        
         // Create new blank workout session
         currentWorkout = WorkoutSession()
+        dataTable.reloadData()
+        workoutList?.reload()
+        
+        headlineText.text = "\(prevWorkouts!.count) Workouts this week, let's get started!"
     }
     
     // Start fetching motion sensors
@@ -94,14 +132,14 @@ class MainViewController: UIViewController{
             // Configure a timer to fetch the accelerometer data.
             self.timer = Timer(fire: Date(), interval: (1.0), //(1.0/60.0)
                                repeats: true, block: { (timer) in
-                                // rename todo
-                                if let data2 = self.motion.accelerometerData {
-                                    let ax = data2.acceleration.x
-                                    let ay = data2.acceleration.y
-                                    let az = data2.acceleration.z
+                                if let accData = self.motion.accelerometerData {
+                                    let ax = accData.acceleration.x
+                                    let ay = accData.acceleration.y
+                                    let az = accData.acceleration.z
                                     
-                                    //3d Acceleration TODO
-                                    self.currentWorkout?.setAcceleration(Float(ax))
+                                    let acceleration = sqrt(ax * ax + ay * ay)
+                                    
+                                    self.currentWorkout?.setAcceleration(Float(acceleration))
                                 }
                                 
                                 // Reload data
@@ -138,5 +176,11 @@ extension MainViewController: UITableViewDataSource {
         let curData: (String, String) = data?[indexPath.row] ?? ("", "")
         cell.textLabel!.text = "\(curData.0) \(curData.1)"
         return cell
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate {
+    func getWorkoutData() -> [WorkoutSession] {
+        return prevWorkouts ?? []
     }
 }

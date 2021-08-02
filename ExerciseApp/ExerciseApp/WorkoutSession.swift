@@ -25,8 +25,8 @@ class WorkoutSession {
     init() {
         self.type = "Run🏃‍♂️"
         self.duration = 0
-        self.distance = -1
-        self.speed = -1
+        self.distance = 0
+        self.speed = 0
         self.status = "Starting"
         self.acceleration = 0
         self.active = false
@@ -38,7 +38,7 @@ class WorkoutSession {
     }
     
     func getSpeed() -> String {
-        return String(speed) + " m / s"
+        return String(abs(round(speed * 10) / 10.0)) + " m / s"
     }
     
     func setDistance(_ newDistance: Float){
@@ -46,7 +46,7 @@ class WorkoutSession {
     }
     
     func getDistance() -> String {
-        return String(distance) + " m"
+        return String(abs(round(distance * 10) / 10.0)) + " m"
     }
     
     func getData() -> [(String, String)] {
@@ -54,9 +54,10 @@ class WorkoutSession {
     }
     
     func getDuration() -> String {
-        let minutes = Int(duration) / 60
-        let seconds = Int(duration) % 60
-        return String(minutes) + ":" + String(seconds)
+        let minutes = String(Int(duration) / 60)
+        var seconds = String(Int(duration) % 60)
+        if seconds.count < 2 {seconds = "0" + seconds}
+        return minutes + ":" + seconds
     }
     
     func setAcceleration(_ newAcceleration: Float) {
@@ -64,26 +65,28 @@ class WorkoutSession {
     }
     
     func getAcceleration() -> String {
-        return String(acceleration) + " m / s / s"
+        return String(abs(round(acceleration * 10) / 10.0 )) + " m / s / s"
     }
     
-    // ?
     func setDuration(newDuration: Float) {
         duration = newDuration
+    }
+    
+    func setType(newType: String){
+        type = newType
     }
     
     // toggle timer on/off
     func toggle() {
         // if inactive, enable timer
         if !active {
-        print("starting")
         self.timer = Timer(fire: Date(), interval: (1.0),
                            repeats: true, block: { (timer) in
                             self.duration += 1
-                            print(self.duration)
                            })
         RunLoop.current.add(self.timer!, forMode: .default )
         }
+        
         // if already active, turn off timer
         else {
             self.timer?.invalidate()

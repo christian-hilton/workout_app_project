@@ -9,15 +9,16 @@ import UIKit
 
 class WorkoutsCollectionViewController: UICollectionViewController {
     
-    let dataSource: [WorkoutSession] = [WorkoutSession(), WorkoutSession()]
+    var dataSource: [WorkoutSession] = [WorkoutSession(), WorkoutSession()]
+    var delegate: MainViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        delegate = (self.parent as? MainViewController)
+        dataSource = delegate?.getWorkoutData() ?? []
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        print(dataSource.count)
         return dataSource.count
         
     }
@@ -26,17 +27,19 @@ class WorkoutsCollectionViewController: UICollectionViewController {
         
         var cell = UICollectionViewCell()
         
-        if let nameCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? WorkoutCollectionViewCell {            
+        if let nameCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? WorkoutCollectionViewCell {
             nameCell.configure(with: dataSource[indexPath.row])
             cell = nameCell
         }
-        
-        
-        
         return cell
     }
     
     // Unused, clicking cell to view more
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
+    
+    func reload() {
+        dataSource = delegate?.getWorkoutData() ?? []
+        collectionView.reloadData()
     }
 }
