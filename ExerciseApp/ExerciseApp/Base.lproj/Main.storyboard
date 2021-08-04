@@ -42,7 +42,7 @@
                                     </fragment>
                                     <fragment content="🏃‍♂️">
                                         <attributes>
-                                            <font key="NSFont" size="36" name=".AppleColorEmojiUI"/>
+                                            <font key="NSFont" metaFont="system" size="36"/>
                                             <font key="NSOriginalFont" metaFont="system" size="36"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -141,8 +141,6 @@
                                 </state>
                                 <connections>
                                     <action selector="endWorkout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C8u-TQ-yyo"/>
-                                    <action selector="pause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SUa-Ig-lsJ"/>
-                                    <action selector="pressStart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="96b-We-P3a"/>
                                 </connections>
                             </button>
                         </subviews>

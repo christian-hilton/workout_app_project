@@ -36,8 +36,8 @@ class WorkoutsCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     }
     
-    func reload() {
-        dataSource = delegate?.getWorkoutData() ?? []
+    func reload(new: [WorkoutSession]) {
+        dataSource = new
         collectionView.reloadData()
     }
 }

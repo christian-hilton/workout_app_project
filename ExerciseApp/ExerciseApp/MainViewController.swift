@@ -8,7 +8,7 @@
 import UIKit
 import CoreMotion
 import CoreData
-
+import CoreLocation
 
 class MainViewController: UIViewController{
     
@@ -31,6 +31,7 @@ class MainViewController: UIViewController{
     // For motion data fetching
     let motion = CMMotionManager()
     let pedometer = CMPedometer()
+    let location = CLLocation()
     var timer: Timer?
     
     var feedback: String = "0 Workouts this week, let's get started!"
@@ -54,9 +55,7 @@ class MainViewController: UIViewController{
         bikeText.addGestureRecognizer(tapBike)
         
         prevWorkouts = []
-        
-        workoutList = (self.children[0] as? WorkoutsCollectionViewController)
-    }
+        }
     
     @objc func tapRun(sender:UITapGestureRecognizer) {
         currentWorkout?.setType(newType: "Run")
@@ -107,7 +106,7 @@ class MainViewController: UIViewController{
         //add to workouts
         prevWorkouts?.append(currentWorkout!)
         workoutList?.dataSource = prevWorkouts ?? []
-        workoutList?.reload()
+        workoutList?.reload(new: prevWorkouts ?? [])
         
         // Create new blank workout session
         currentWorkout = WorkoutSession()
@@ -128,6 +127,7 @@ class MainViewController: UIViewController{
                     print(pedData)
                     
                     let distance = Float(pedData.distance ?? 0)
+                    
                     self.currentWorkout?.setDistance(distance)
                     print(pedData)
                     } else {
@@ -141,10 +141,14 @@ class MainViewController: UIViewController{
                                 if let accData = self.motion.accelerometerData {
                                     
                                     print(accData)
-                                    
+                                                                        
                                     let ax = accData.acceleration.x
                                     let ay = accData.acceleration.y
                                     let az = accData.acceleration.z
+                                    
+                                    print(self.location)
+                                    let speed = self.location.speed
+                                    self.currentWorkout?.setSpeed(Float(speed))
                                     
                                     let acceleration = sqrt(ax * ax + ay * ay)
                                     
@@ -194,6 +198,8 @@ extension MainViewController: UICollectionViewDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        print(sender)
+        let nextVC = segue.destination as! WorkoutsCollectionViewController
+        workoutList = nextVC
+        nextVC.dataSource = prevWorkouts ?? []
     }
 }
